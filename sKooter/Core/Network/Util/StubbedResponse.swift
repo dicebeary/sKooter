@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StubbedResponse {
+enum StubbedResponse {
     static func getResponse(from jsonFile: String) -> Data {
         if let path = Bundle(for: BundleToken.self).path(forResource: jsonFile, ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {

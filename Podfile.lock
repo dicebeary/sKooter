@@ -25,6 +25,7 @@ PODS:
   - SwiftEntryKit (1.2.7):
     - QuickLayout (= 3.0.0)
   - SwiftGen (6.4.0)
+  - SwiftLint (0.44.0)
   - SwiftyMocky (4.0.4):
     - Sourcery (~> 1.0.2)
 
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - RxTest (~> 5.0)
   - SwiftEntryKit (~> 1.2.7)
   - SwiftGen (~> 6.4.0)
+  - SwiftLint
   - SwiftyMocky (= 4.0.4)
 
 SPEC REPOS:
@@ -57,6 +59,7 @@ SPEC REPOS:
     - Sourcery
     - SwiftEntryKit
     - SwiftGen
+    - SwiftLint
     - SwiftyMocky
 
 SPEC CHECKSUMS:
@@ -74,8 +77,9 @@ SPEC CHECKSUMS:
   Sourcery: 70a6048014bd4f37ea80e6bd4354d47bf3b760e1
   SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
   SwiftyMocky: 1fb3ceca9ded134dad4da58a0f20023d7f685ccf
 
-PODFILE CHECKSUM: e780f012877fd86f87e642d6166044b6de9f73db
+PODFILE CHECKSUM: a04d4f06c32eeb1bb483a71ded031f28042cd0d6
 
 COCOAPODS: 1.10.1

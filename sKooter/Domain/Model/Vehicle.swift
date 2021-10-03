@@ -19,24 +19,24 @@ struct Vehicle {
     let model: Model
     let location: CLLocationCoordinate2D
 
-    struct Resolution {
+    struct Resolution: Equatable {
         let type: ResolutionType
         let id: String
         let date: Date
     }
 
-    enum ResolutionType {
+    enum ResolutionType: Equatable {
         case claimed
         case notFound
         case other
     }
 
-    enum State {
+    enum State: Equatable {
         case active
         case inactive
     }
 
-    enum Model: String {
+    enum Model: String, Equatable {
         case unknown
         case aa
         case ab

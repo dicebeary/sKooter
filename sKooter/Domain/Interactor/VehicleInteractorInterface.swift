@@ -7,8 +7,8 @@
 
 import RxSwift
 
-/// Interactor for fetching and setting user data
 // sourcery: AutoMockable
+/// Interactor for fetching and setting user data
 protocol VehicleInteractorInterface {
     var selectedVehicle: Observable<Vehicle?> { get }
     var vehicles: Observable<[Vehicle]> { get }

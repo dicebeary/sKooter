@@ -16,8 +16,8 @@ class MapViewController: UIViewController {
 
     @LazyInjected var viewModel: MapViewModelInterface
 
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var detailsView: MarkerDetailsView!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var detailsView: MarkerDetailsView!
 
     private let selectedVehicleId = PublishRelay<String?>()
     private let bag = DisposeBag()

@@ -1,0 +1,58 @@
+disabled_rules:
+  - dynamic_inline
+  - private_unit_test
+  - type_body_length
+  - valid_ibinspectable
+  - identifier_name
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - contains_over_first_not_nil
+  - convenience_type
+  - discouraged_object_literal
+  - empty_string
+  - fallthrough
+  - fatal_error_message
+  - first_where
+  - joined_default_parameter
+  - multiline_arguments
+  - multiline_function_chains
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - private_action
+  - private_outlet
+  - required_enum_case
+  - sorted_first_last
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+  - array_init
+  - explicit_init
+  - function_default_parameter_at_end
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - strict_fileprivate
+
+excluded:
+  - Pods
+  - sKooterTests
+  - Mock.generated.swift
+line_length:
+  - 200 #error
+cyclomatic_complexity:
+  - 25 #warning
+  - 30 #error
+file_length:
+  - 300 #warning
+  - 500 #error
+force_cast:
+  severity: error
+force_try:
+  severity: error
+force_unwrapping:
+  severity: error
+function_body_length:
+  - 50 #warning
+  - 70 #error

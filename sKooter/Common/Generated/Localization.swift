@@ -12,7 +12,7 @@ import Foundation
 internal enum Localization {
 
   internal enum MapDetails {
-    /// %@ %
+    /// %@ %%
     internal static func batteryPercentage(_ p1: Any) -> String {
       return Localization.tr("Localizable", "map_details.battery_percentage", String(describing: p1))
     }

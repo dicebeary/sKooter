@@ -26,7 +26,6 @@ final class LocationManager: NSObject, LocationManagerInterface {
         super.init()
     }
 
-
     func requestPermission() {
         manager.requestAlwaysAuthorization()
     }
@@ -49,7 +48,6 @@ final class LocationManager: NSObject, LocationManagerInterface {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocationRelay.accept(manager.location)
-        print(manager.location)
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

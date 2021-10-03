@@ -13,6 +13,7 @@ target 'sKooter' do
   pod 'RxMKMapView', '~> 5.0.0'
   pod 'SwiftGen', '~> 6.4.0'
   pod 'SwiftEntryKit', '~> 1.2.7'
+  pod 'SwiftLint', '~> 0.44.0'
 
   target 'sKooterTests' do
     inherit! :search_paths
