@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import RxSwift
+import Resolver
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    @LazyInjected var locationManager: LocationManagerInterface
 
+    private let bag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        self.locationManager.startLocation()
+
+        locationManager.permissionState
+            .filter { $0 == .notDetermined || $0 == .restricted }
+            .bind { [weak self] _ in
+                self?.locationManager.requestPermission()
+            }
+            .disposed(by: bag)
+
         return true
     }
 

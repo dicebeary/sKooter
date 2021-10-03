@@ -6,12 +6,13 @@ target 'sKooter' do
   use_frameworks!
 
   # Pods for sKooter
-  pod 'RxSwift', '~> 5.0'
-  pod 'RxCocoa', '~> 5.0'
-  pod 'RxDataSources', '~> 4.0'
-  pod 'Kingfisher', '6.3.0'
   pod 'Moya/RxSwift', '~> 14.0'
   pod 'Resolver', '1.4.3'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
+  pod 'RxMKMapView', '~> 5.0.0'
+  pod 'SwiftGen', '~> 6.4.0'
+  pod 'SwiftEntryKit', '~> 1.2.7'
 
   target 'sKooterTests' do
     inherit! :search_paths

@@ -8,8 +8,12 @@
 import RxSwift
 
 /// Interactor for fetching and setting user data
+// sourcery: AutoMockable
 protocol VehicleInteractorInterface {
-    var vehicles: Observable<Vehicle> { get }
+    var selectedVehicle: Observable<Vehicle?> { get }
+    var vehicles: Observable<[Vehicle]> { get }
 
-    func fetchVehicles() -> Single<Vehicle>
+    func fetchVehicles()
+
+    func selectVehicle(by id: String?)
 }

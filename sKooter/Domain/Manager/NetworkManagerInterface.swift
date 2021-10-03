@@ -7,6 +7,7 @@
 
 import RxSwift
 
+// sourcery: AutoMockable
 protocol NetworkManagerInterface {
     func getVehicles() -> Single<VehiclesResponseModel>
 }

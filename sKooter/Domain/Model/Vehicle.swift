@@ -13,10 +13,10 @@ struct Vehicle {
     let hardwareId: String
     let zoneId: String
     let fleetbirdId: Int
-    let resolution: Resolution
+    let resolution: Resolution?
     let battery: Int
     let state: State
-    let model: String
+    let model: Model
     let location: CLLocationCoordinate2D
 
     struct Resolution {
@@ -34,5 +34,11 @@ struct Vehicle {
     enum State {
         case active
         case inactive
+    }
+
+    enum Model: String {
+        case unknown
+        case aa
+        case ab
     }
 }

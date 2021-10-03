@@ -9,6 +9,7 @@ import RxSwift
 import CoreLocation
 
 /// Interactor for fetching and setting user data
+// sourcery: AutoMockable
 protocol UserInteractorInterface {
-    var userLocation: Observable<CLLocation> { get }
+    var userLocation: Observable<CLLocation?> { get }
 }

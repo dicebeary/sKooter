@@ -1,0 +1,18 @@
+sourceryCommand: null
+sourceryTemplate: null
+
+sKooterTests:
+  sources:
+    include:
+    - ./sKooter
+  output: ./sKooterTests/Mock.generated.swift
+  targets:
+  - sKooterTests
+  testable:
+  - sKooter
+  import:
+  - Foundation
+  - RxCocoa
+  - RxSwift
+  - CoreLocation
+  - MapKit
