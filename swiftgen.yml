@@ -1,0 +1,10 @@
+ strings:
+   inputs:
+     - sKooter/Resources/Localization/en.lproj
+   outputs:
+     - templateName: structured-swift5
+       params:
+         enumName: Localization
+       output: sKooter/Common/Generated/Localization.swift
+
+

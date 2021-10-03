@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  sKooter
+
+  Created by Vajda Kristóf on 2021. 10. 03..
+  
+*/
+
+"map_details.occupied" = "Occupied";
+"map_details.free" = "Free";
+"map_details.battery_percentage" = "%@ %%";
+
+"error_general_title" = "Whoopsie!";
+"error_general_description" = "Something bad happened";
