@@ -655,16 +655,32 @@ open class VehicleInteractorInterfaceMock: VehicleInteractorInterface, Mock {
 
 
 
-    open func fetchVehicles() {
+    open func fetchVehicles() -> Completable {
         addInvocation(.m_fetchVehicles)
 		let perform = methodPerformValue(.m_fetchVehicles) as? () -> Void
 		perform?()
+		var __value: Completable
+		do {
+		    __value = try methodReturnValue(.m_fetchVehicles).casted()
+		} catch {
+			onFatalFailure("Stub return value not specified for fetchVehicles(). Use given")
+			Failure("Stub return value not specified for fetchVehicles(). Use given")
+		}
+		return __value
     }
 
-    open func selectVehicle(by id: String?) {
+    open func selectVehicle(by id: String?) -> Completable {
         addInvocation(.m_selectVehicle__by_id(Parameter<String?>.value(`id`)))
 		let perform = methodPerformValue(.m_selectVehicle__by_id(Parameter<String?>.value(`id`))) as? (String?) -> Void
 		perform?(`id`)
+		var __value: Completable
+		do {
+		    __value = try methodReturnValue(.m_selectVehicle__by_id(Parameter<String?>.value(`id`))).casted()
+		} catch {
+			onFatalFailure("Stub return value not specified for selectVehicle(by id: String?). Use given")
+			Failure("Stub return value not specified for selectVehicle(by id: String?). Use given")
+		}
+		return __value
     }
 
 
@@ -721,6 +737,26 @@ open class VehicleInteractorInterfaceMock: VehicleInteractorInterface, Mock {
             return Given(method: .p_vehicles_get, products: defaultValue.map({ StubProduct.return($0 as Any) }))
         }
 
+        public static func fetchVehicles(willReturn: Completable...) -> MethodStub {
+            return Given(method: .m_fetchVehicles, products: willReturn.map({ StubProduct.return($0 as Any) }))
+        }
+        public static func selectVehicle(by id: Parameter<String?>, willReturn: Completable...) -> MethodStub {
+            return Given(method: .m_selectVehicle__by_id(`id`), products: willReturn.map({ StubProduct.return($0 as Any) }))
+        }
+        public static func fetchVehicles(willProduce: (Stubber<Completable>) -> Void) -> MethodStub {
+            let willReturn: [Completable] = []
+			let given: Given = { return Given(method: .m_fetchVehicles, products: willReturn.map({ StubProduct.return($0 as Any) })) }()
+			let stubber = given.stub(for: (Completable).self)
+			willProduce(stubber)
+			return given
+        }
+        public static func selectVehicle(by id: Parameter<String?>, willProduce: (Stubber<Completable>) -> Void) -> MethodStub {
+            let willReturn: [Completable] = []
+			let given: Given = { return Given(method: .m_selectVehicle__by_id(`id`), products: willReturn.map({ StubProduct.return($0 as Any) })) }()
+			let stubber = given.stub(for: (Completable).self)
+			willProduce(stubber)
+			return given
+        }
     }
 
     public struct Verify {

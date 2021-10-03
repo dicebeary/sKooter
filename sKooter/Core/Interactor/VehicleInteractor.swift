@@ -11,7 +11,6 @@ import RxCocoa
 final class VehicleInteractor: VehicleInteractorInterface {
 
     private let networkManager: NetworkManagerInterface
-    private let bag = DisposeBag()
 
     var selectedVehicle: Observable<Vehicle?> { selectedVehicleRelay.asObservable() }
     var vehicles: Observable<[Vehicle]> { vehiclesRelay.asObservable() }
@@ -23,20 +22,23 @@ final class VehicleInteractor: VehicleInteractorInterface {
         self.networkManager = networkManager
     }
 
-    func fetchVehicles() {
+    func fetchVehicles() -> Completable {
         return networkManager.getVehicles()
             .map(VehiclesResponseModel.map(from:))
             .do(onSuccess: { [weak self] vehicles in
                 self?.vehiclesRelay.accept(vehicles)
             })
-            .subscribe()
-            .disposed(by: bag)
+            .asCompletable()
     }
 
-    func selectVehicle(by id: String?) {
-        let selectedVehicle = vehiclesRelay.value
-            .first(where: { $0.id == id })
-
-        selectedVehicleRelay.accept(selectedVehicle)
+    func selectVehicle(by id: String?) -> Completable {
+        vehiclesRelay
+            .map { $0.first(where: { $0.id == id }) }
+            .take(1)
+            .asSingle()
+            .do(onSuccess: { [weak self] vehicle in
+                self?.selectedVehicleRelay.accept(vehicle)
+            })
+            .asCompletable()
     }
 }

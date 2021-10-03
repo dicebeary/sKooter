@@ -11,6 +11,7 @@ import Resolver
 import RxSwift
 import RxCocoa
 import RxMKMapView
+import SwiftEntryKit
 
 class MapViewController: UIViewController {
 
@@ -52,6 +53,13 @@ extension MapViewController {
 
         output.annotations
             .drive(mapView.rx.annotations)
+            .disposed(by: bag)
+
+        output.error
+            .drive(onNext: { error in
+                guard let error = error else { return }
+                ErrorToast.showError(with: error.title, subtitle: error.subtitle)
+            })
             .disposed(by: bag)
     }
 }

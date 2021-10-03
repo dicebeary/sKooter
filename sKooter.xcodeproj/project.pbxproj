@@ -45,6 +45,8 @@
 		6AF15A092709D7B6008E8575 /* VehicleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF15A082709D7B6008E8575 /* VehicleFactory.swift */; };
 		6AF15A0F2709E149008E8575 /* UserInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF15A0E2709E149008E8575 /* UserInteractorTests.swift */; };
 		6AF15A132709E154008E8575 /* VehicleInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF15A122709E154008E8575 /* VehicleInteractorTests.swift */; };
+		6AF15A172709E9BC008E8575 /* SkooterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF15A162709E9BC008E8575 /* SkooterError.swift */; };
+		6AF15A262709F061008E8575 /* ErrorToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF15A252709F061008E8575 /* ErrorToast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		6AF15A082709D7B6008E8575 /* VehicleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFactory.swift; sourceTree = "<group>"; };
 		6AF15A0E2709E149008E8575 /* UserInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractorTests.swift; sourceTree = "<group>"; };
 		6AF15A122709E154008E8575 /* VehicleInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleInteractorTests.swift; sourceTree = "<group>"; };
+		6AF15A162709E9BC008E8575 /* SkooterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkooterError.swift; sourceTree = "<group>"; };
+		6AF15A252709F061008E8575 /* ErrorToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorToast.swift; sourceTree = "<group>"; };
 		97927090022D18D8F19EA9BA /* Pods-sKooterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sKooterTests.release.xcconfig"; path = "Target Support Files/Pods-sKooterTests/Pods-sKooterTests.release.xcconfig"; sourceTree = "<group>"; };
 		BF7E863261446E9C35B7A062 /* Pods-sKooterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sKooterTests.debug.xcconfig"; path = "Target Support Files/Pods-sKooterTests/Pods-sKooterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9F2EC7032B38ACEDB67C44 /* Pods-sKooter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sKooter.release.xcconfig"; path = "Target Support Files/Pods-sKooter/Pods-sKooter.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		6A61D6852708801D00C0A993 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6AF15A1A2709EA60008E8575 /* Error */,
 				6A61D69E270881A500C0A993 /* Manager */,
 				6A61D694270880F300C0A993 /* Interactor */,
 				6A61D693270880EB00C0A993 /* Model */,
@@ -359,8 +364,8 @@
 		6AF1591A27098D7F008E8575 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				6AF1591B27098D99008E8575 /* MarkerDetailsView.swift */,
-				6AF1592127098DA6008E8575 /* MarkerDetailsView.xib */,
+				6AF15A242709F056008E8575 /* ErrorToast */,
+				6AF15A232709F04A008E8575 /* MarkerDetails */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -437,6 +442,31 @@
 				6AF15A082709D7B6008E8575 /* VehicleFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		6AF15A1A2709EA60008E8575 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				6AF15A162709E9BC008E8575 /* SkooterError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		6AF15A232709F04A008E8575 /* MarkerDetails */ = {
+			isa = PBXGroup;
+			children = (
+				6AF1591B27098D99008E8575 /* MarkerDetailsView.swift */,
+				6AF1592127098DA6008E8575 /* MarkerDetailsView.xib */,
+			);
+			path = MarkerDetails;
+			sourceTree = "<group>";
+		};
+		6AF15A242709F056008E8575 /* ErrorToast */ = {
+			isa = PBXGroup;
+			children = (
+				6AF15A252709F061008E8575 /* ErrorToast.swift */,
+			);
+			path = ErrorToast;
 			sourceTree = "<group>";
 		};
 		934BA93BF7814BF0DE78E308 /* Frameworks */ = {
@@ -703,7 +733,9 @@
 				6AF158E327089085008E8575 /* NetworkManager.swift in Sources */,
 				6AF158F027097A4D008E8575 /* Resolver.swift in Sources */,
 				6A82DC39270884AC00BCB0B2 /* Vehicle.swift in Sources */,
+				6AF15A172709E9BC008E8575 /* SkooterError.swift in Sources */,
 				6AF1590527097C5B008E8575 /* LocationManager.swift in Sources */,
+				6AF15A262709F061008E8575 /* ErrorToast.swift in Sources */,
 				6AF159692709C488008E8575 /* MapScooterAnnotation.swift in Sources */,
 				6AF158DD27088F35008E8575 /* CoreConstants.swift in Sources */,
 				6AF1591C27098D99008E8575 /* MarkerDetailsView.swift in Sources */,

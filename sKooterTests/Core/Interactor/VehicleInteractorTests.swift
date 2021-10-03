@@ -37,6 +37,9 @@ extension VehicleInteractorTests {
 
         // Act
         sut.fetchVehicles()
+            .subscribe()
+            .dispose()
+
         let vehicles = try sut.vehicles.toBlocking(timeout: 1.0).first()
 
         // Assert
@@ -50,7 +53,11 @@ extension VehicleInteractorTests {
 
         // Act
         sut.fetchVehicles()
+            .subscribe()
+            .dispose()
         sut.selectVehicle(by: "1")
+            .subscribe()
+            .dispose()
 
         let selectedVehicle = try sut.selectedVehicle.toBlocking(timeout: 1.0).first()
 

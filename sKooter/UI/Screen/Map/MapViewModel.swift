@@ -20,6 +20,8 @@ final class MapViewModel: MapViewModelInterface {
 
     private let bag = DisposeBag()
 
+    private let errorRelay = BehaviorRelay<SkooterError?>(value: nil)
+
     init(userInteractor: UserInteractorInterface,
          vehicleInteractor: VehicleInteractorInterface) {
         self.userInteractor = userInteractor
@@ -33,6 +35,7 @@ extension MapViewModel {
         let annotations: Driver<[MKAnnotation]>
         let initialRegion: Single<MKCoordinateRegion>
         let markerDetails: Driver<MarkerDetailsView.Data?>
+        let error: Driver<SkooterError?>
     }
 
     struct Events {
@@ -44,6 +47,10 @@ extension MapViewModel {
 extension MapViewModel {
     func transform(input: Events) -> Data {
         vehicleInteractor.fetchVehicles()
+            .subscribe(onError: { [weak self] _ in
+                self?.errorRelay.accept(.generalError)
+            })
+            .disposed(by: bag)
 
         let location = userInteractor.userLocation
             .filter { $0 != nil }
@@ -55,7 +62,8 @@ extension MapViewModel {
 
         return Data(annotations: getAnnotations(),
                     initialRegion: getRegion(),
-                    markerDetails: getMarkerDetails())
+                    markerDetails: getMarkerDetails(),
+                    error: errorRelay.debug().asDriver(onErrorDriveWith: .empty()))
     }
 }
 
@@ -63,25 +71,29 @@ extension MapViewModel {
 private extension MapViewModel {
     func selectClosestVehicle(by userLocation: Observable<CLLocation>) {
         Observable.combineLatest(userLocation, vehicleInteractor.vehicles)
-            .subscribe { [weak self] location, vehicles in
+            .flatMapLatest { [weak self] location, vehicles -> Completable in
                 let closestVehicleId = vehicles.map { vehicle -> (Vehicle, CLLocationDistance) in
                     let vehicleLocation = CLLocation(latitude: vehicle.location.latitude, longitude: vehicle.location.longitude)
                     return (vehicle, location.distance(from: vehicleLocation))
                 }
                 .min(by: { $0.1 < $1.1 })
                 .map { $0.0.id }
-                guard let id = closestVehicleId else { return }
+                guard let self = self,
+                      let id = closestVehicleId else { return .empty() }
 
-                self?.vehicleInteractor.selectVehicle(by: id)
+                return self.vehicleInteractor.selectVehicle(by: id)
             }
+            .subscribe()
             .disposed(by: bag)
     }
 
     func selectVehicle(by events: Observable<String?>) {
         events
-            .bind { [weak self] id in
-                self?.vehicleInteractor.selectVehicle(by: id)
+            .flatMapLatest { [weak self] id -> Completable in
+                guard let self = self else { return .empty() }
+                return self.vehicleInteractor.selectVehicle(by: id)
             }
+            .subscribe()
             .disposed(by: bag)
     }
 }

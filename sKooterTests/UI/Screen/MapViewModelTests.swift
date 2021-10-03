@@ -44,7 +44,9 @@ extension MapViewModelTests {
 
         Given(userInteractor, .userLocation(getter: .just(givenUserLocation)))
         Given(vehicleInteractor, .selectedVehicle(getter: .just(givenVehicle)))
+        Given(vehicleInteractor, .selectVehicle(by: .any, willReturn: .empty()))
         Given(vehicleInteractor, .vehicles(getter: .just(givenVehicles)))
+        Given(vehicleInteractor, .fetchVehicles(willReturn: .empty()))
 
         let selectedMarkerEvents = Observable<String?>.empty()
 
@@ -72,6 +74,10 @@ extension MapViewModelTests {
 
         let region = try output.initialRegion.toBlocking(timeout: 1.0).first()
         expect(region).notTo(beNil())
+
+        if let _ = try? output.error.toBlocking(timeout: 1.0).first() {
+            fail("Error has emitted unexpectedly")
+        }
     }
 
     func testMissingVehiclesWithUserLocation() throws {
@@ -81,6 +87,7 @@ extension MapViewModelTests {
         Given(userInteractor, .userLocation(getter: .just(givenUserLocation)))
         Given(vehicleInteractor, .selectedVehicle(getter: .just(nil)))
         Given(vehicleInteractor, .vehicles(getter: .just([])))
+        Given(vehicleInteractor, .fetchVehicles(willReturn: .empty()))
 
         let selectedMarkerEvents = Observable<String?>.empty()
 
@@ -108,6 +115,7 @@ extension MapViewModelTests {
         Given(userInteractor, .userLocation(getter: .just(nil)))
         Given(vehicleInteractor, .selectedVehicle(getter: .just(nil)))
         Given(vehicleInteractor, .vehicles(getter: .just([])))
+        Given(vehicleInteractor, .fetchVehicles(willReturn: .empty()))
 
         let selectedMarkerEvents = Observable<String?>.empty()
 
@@ -139,6 +147,8 @@ extension MapViewModelTests {
         Given(userInteractor, .userLocation(getter: .just(givenUserLocation)))
         Given(vehicleInteractor, .selectedVehicle(getter: .just(givenVehicle)))
         Given(vehicleInteractor, .vehicles(getter: .just(givenVehicles)))
+        Given(vehicleInteractor, .fetchVehicles(willReturn: .empty()))
+        Given(vehicleInteractor, .selectVehicle(by: .any, willReturn: .empty()))
 
         let selectedMarkerEvents = Observable<String?>.just("id2")
 
@@ -147,5 +157,20 @@ extension MapViewModelTests {
 
         // Assert
         Verify(vehicleInteractor, .selectVehicle(by: .value("id2")))
+    }
+
+    func testFetchError() throws {
+        // Arrange
+        Given(userInteractor, .userLocation(getter: .just(nil)))
+        Given(vehicleInteractor, .selectedVehicle(getter: .just(nil)))
+        Given(vehicleInteractor, .vehicles(getter: .just([])))
+        Given(vehicleInteractor, .fetchVehicles(willReturn: .error(SkooterError.generalError)))
+
+        // Act
+        let output = sut.transform(input: .init(selectedMarker: .empty()))
+        let error = try output.error.toBlocking(timeout: 1.0).first()
+
+        // Assert
+        expect(error).to(equal(.generalError))
     }
 }

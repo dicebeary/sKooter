@@ -9,3 +9,6 @@
 "map_details.occupied" = "Occupied";
 "map_details.free" = "Free";
 "map_details.battery_percentage" = "%@ %%";
+
+"error_general_title" = "Whoopsie!";
+"error_general_description" = "Something bad happened";

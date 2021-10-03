@@ -13,7 +13,7 @@ protocol VehicleInteractorInterface {
     var selectedVehicle: Observable<Vehicle?> { get }
     var vehicles: Observable<[Vehicle]> { get }
 
-    func fetchVehicles()
+    func fetchVehicles() -> Completable
 
-    func selectVehicle(by id: String?)
+    func selectVehicle(by id: String?) -> Completable
 }

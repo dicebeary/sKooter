@@ -10,6 +10,10 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum Localization {
+  /// Something bad happened
+  internal static let errorGeneralDescription = Localization.tr("Localizable", "error_general_description")
+  /// Whoopsie!
+  internal static let errorGeneralTitle = Localization.tr("Localizable", "error_general_title")
 
   internal enum MapDetails {
     /// %@ %%
